@@ -16,3 +16,8 @@ semantic tags, and webpage creation without using CSS or JavaScript.
 
 
 ## Project Structure
+
+## Project URL
+
+GitHub Repository:
+https://github.com/surajrameshkulal-ship-it/single-page-cv
