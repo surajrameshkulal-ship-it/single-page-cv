@@ -1,21 +1,36 @@
-# Single Page CV Website
+# Suraj Kulal Portfolio
 
 ## Project Description
 
-This project is a single-page Curriculum Vitae (CV) website created using only HTML.
+A professional single-page developer portfolio for Suraj Kulal, focused on IT infrastructure,
+networking, cybersecurity operations, and practical project work.
 
-The purpose of this project is to demonstrate basic HTML structure,
-semantic tags, and webpage creation without using CSS or JavaScript.
+The site uses a modern portfolio structure:
 
+- Hero
+- About
+- Skills
+- Projects
+- Experience
+- Contact
+
+## Features
+
+- Fixed navigation
+- Dark/light mode toggle
+- Professional typography hierarchy
+- Card-based sections
+- Animated section reveals
+- Cybersecurity-themed animated background
+- Clickable email and phone actions
+- Downloadable CV
 
 ## Technologies Used
 
 - HTML5
+- CSS3
+- JavaScript
 - Git
-- GitHub
-
-
-## Project Structure
 
 ## Project URL
 
