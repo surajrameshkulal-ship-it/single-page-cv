@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- test change -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suraj Kulal - IT Specialist</title>
-    ========
-    <title>Suraj - IT CV</title>
+    <title>Suraj IT Specialist</title>
     <style>
         :root {
             --bg-dark: #05060a; /* deeper page background */
@@ -43,11 +41,7 @@
 
         /* Matrix rain canvas */
         #matrix-canvas {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            opacity: 0.18;
-            pointer-events: none;
+            display: none;
         }
 
         /* Animated grid background */
@@ -59,7 +53,7 @@
                 linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
             background-size: 40px 40px;
-            animation: grid-drift 20s linear infinite;
+            animation: none;
             pointer-events: none;
             z-index: 0;
         }
@@ -166,10 +160,10 @@
             height: 2px;
             background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.6), transparent);
             box-shadow: 0 0 12px rgba(0, 255, 136, 0.4);
-            animation: scan 4s linear infinite;
+            animation: none;
             pointer-events: none;
             z-index: 10;
-            opacity: 0.7;
+            opacity: 0;
         }
 
         @keyframes scan {
@@ -309,13 +303,13 @@
         }
 
         .typing-cursor {
-            display: inline-block;
+            display: none;
             width: 7px;
             height: 0.85em;
             background: var(--neon-green);
             margin-left: 2px;
             vertical-align: text-bottom;
-            animation: blink 0.8s step-end infinite;
+            animation: none;
         }
 
         @keyframes blink {
@@ -342,6 +336,7 @@
             justify-content: center;
             box-shadow: var(--accent-glow), inset 0 0 20px rgba(0, 255, 136, 0.05);
             animation: avatar-glow 3s ease-in-out infinite;
+            overflow: hidden;
         }
 
         @keyframes avatar-glow {
@@ -352,6 +347,14 @@
         .avatar svg {
             width: 52px;
             height: 52px;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 28%;
+            display: block;
         }
 
         .header-text h1 {
@@ -393,6 +396,16 @@
             font-family: 'Courier New', Courier, monospace;
             opacity: 0;
             animation: fade-in-up 0.6s ease forwards;
+        }
+
+        .contact-item a {
+            color: inherit;
+            font: inherit;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: var(--neon-green);
         }
 
         .contact-item:nth-child(1) { animation-delay: 0.8s; }
@@ -549,6 +562,12 @@
             margin: 0.15rem 0 0.5rem;
         }
 
+        .timeline-body .meta a {
+            color: inherit;
+            font: inherit;
+            text-decoration: none;
+        }
+
         .timeline-body ul {
             padding-left: 1.25rem;
             color: var(--text-muted);
@@ -673,6 +692,12 @@
             color: var(--text-primary);
         }
 
+        .project-body h3 a {
+            color: inherit;
+            font: inherit;
+            text-decoration: none;
+        }
+
         .project-body p {
             font-size: 0.875rem;
             color: var(--text-muted);
@@ -709,6 +734,57 @@
             height: 14px;
         }
 
+        .badge-list button,
+        .badge-list a {
+            appearance: none;
+            background: none;
+            border: 0;
+            color: inherit;
+            cursor: pointer;
+            font: inherit;
+            padding: 0;
+            text-decoration: none;
+        }
+
+        .certificate-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem;
+            background: rgba(2, 6, 23, 0.86);
+            backdrop-filter: blur(8px);
+        }
+
+        .certificate-modal.open {
+            display: flex;
+        }
+
+        .certificate-modal button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 38px;
+            height: 38px;
+            border: 1px solid rgba(0, 212, 255, 0.35);
+            border-radius: 4px;
+            background: rgba(0, 212, 255, 0.08);
+            color: var(--neon-cyan);
+            cursor: pointer;
+            font-size: 1.4rem;
+            line-height: 1;
+        }
+
+        .certificate-modal img {
+            max-width: min(96vw, 1100px);
+            max-height: 88vh;
+            border: 1px solid rgba(0, 212, 255, 0.35);
+            border-radius: 4px;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+        }
+
         .lang-list {
             display: flex;
             flex-wrap: wrap;
@@ -738,6 +814,59 @@
             height: 14px;
         }
 
+        .lang-list button {
+            appearance: none;
+            background: none;
+            border: 0;
+            color: inherit;
+            cursor: pointer;
+            font: inherit;
+            padding: 0;
+            text-decoration: none;
+        }
+
+        .language-proficiency {
+            display: none;
+            margin-top: 0.85rem;
+            padding: 0.85rem 1rem;
+            border: 1px solid rgba(0, 255, 136, 0.25);
+            border-radius: 4px;
+            background: rgba(0, 255, 136, 0.045);
+            max-width: 420px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .language-proficiency.open {
+            display: block;
+        }
+
+        .language-proficiency h3 {
+            color: var(--neon-green);
+            font-size: 0.9rem;
+            margin-bottom: 0.45rem;
+        }
+
+        .language-proficiency p {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .proficiency-meter {
+            height: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 136, 0.28);
+            border-radius: 999px;
+            background: rgba(0, 255, 136, 0.08);
+        }
+
+        .proficiency-meter span {
+            display: block;
+            width: 85%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-green), var(--neon-cyan));
+        }
+
         /* Footer */
         footer {
             background: var(--bg-panel);
@@ -765,6 +894,12 @@
             stroke: var(--neon-green);
         }
 
+        footer a {
+            color: inherit;
+            font: inherit;
+            text-decoration: none;
+        }
+
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
@@ -778,6 +913,16 @@
     /* 3D tilt & shine for header */
     .header-content { transform-style: preserve-3d; transition: transform 180ms cubic-bezier(0.2,0.9,0.2,1); will-change: transform; position: relative; z-index: 5; }
     .header-banner .shine { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at var(--px,50%) var(--py,50%), rgba(255,255,255,0.18), rgba(255,255,255,0.06) 20%, transparent 40%); mix-blend-mode: screen; opacity: 0; transition: opacity 180ms linear; border-radius: 6px; z-index: 6; }
+
+    .particle,
+    .header-banner::after,
+    .header-banner svg.hex-grid,
+    .circuit-line,
+    .status-dot,
+    .avatar,
+    .project-card::after {
+        animation: none !important;
+    }
 
     </style>
 </head>
@@ -804,24 +949,17 @@
         <header class="header-banner">
             <svg class="bg-pattern" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path class="circuit-line" d="M40 30 H120 M120 30 V80 M120 80 H200 M200 80 V130 M200 130 H280" stroke="#00ff88" stroke-width="1.5"/>
-                <circle cx="120" cy="30" r="4" fill="#00ff88"><animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/></circle>
-                <circle cx="120" cy="80" r="4" fill="#00d4ff"><animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/></circle>
-                <circle cx="200" cy="80" r="4" fill="#00ff88"><animate attributeName="opacity" values="1;0.5;1" dur="1.5s" repeatCount="indefinite"/></circle>
-                <circle cx="200" cy="130" r="4" fill="#00d4ff"><animate attributeName="opacity" values="0.5;1;0.5" dur="1.8s" repeatCount="indefinite"/></circle>
+                <circle cx="120" cy="30" r="4" fill="#00ff88"/>
+                <circle cx="120" cy="80" r="4" fill="#00d4ff"/>
+                <circle cx="200" cy="80" r="4" fill="#00ff88"/>
+                <circle cx="200" cy="130" r="4" fill="#00d4ff"/>
                 <rect x="250" y="20" width="60" height="40" rx="2" stroke="#00ff88" stroke-width="1"/>
                 <path class="circuit-line" d="M260 35 H290 M260 42 H285 M260 49 H280" stroke="#00ff88" stroke-width="1"/>
-                <path d="M30 150 Q80 120 130 150 T230 150" stroke="#00d4ff" stroke-width="1" fill="none" stroke-dasharray="4 4">
-                    <animate attributeName="stroke-dashoffset" from="0" to="-16" dur="1s" repeatCount="indefinite"/>
-                </path>
+                <path d="M30 150 Q80 120 130 150 T230 150" stroke="#00d4ff" stroke-width="1" fill="none" stroke-dasharray="4 4"/>
                 <circle cx="280" cy="170" r="30" stroke="#00ff88" stroke-width="1" fill="none"/>
                 <path d="M265 170 L275 180 L295 160" stroke="#00ff88" stroke-width="1.5"/>
-                <!-- Moving data packets -->
-                <circle r="3" fill="#00ff88" class="data-pulse">
-                    <animateMotion dur="3s" repeatCount="indefinite" path="M40 30 H120 V80 H200 V130 H280"/>
-                </circle>
-                <circle r="2.5" fill="#00d4ff" class="data-pulse">
-                    <animateMotion dur="4s" repeatCount="indefinite" begin="1s" path="M280 130 H200 V80 H120 V30"/>
-                </circle>
+                <circle cx="40" cy="30" r="3" fill="#00ff88" class="data-pulse"/>
+                <circle cx="280" cy="130" r="2.5" fill="#00d4ff" class="data-pulse"/>
             </svg>
 
             <svg class="hex-grid" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -835,11 +973,8 @@
             </div>
 
             <div class="header-content">
-                <div class="avatar" aria-label="Security profile">
-                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path d="M32 6 L54 16 V32 C54 44 44 54 32 58 C20 54 10 44 10 32 V16 Z" stroke="#00ff88" stroke-width="2.5" fill="rgba(0,255,136,0.1)"/>
-                        <path d="M24 32 L30 38 L42 24" stroke="#00ff88" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                <div class="avatar">
+                    <img src="assets/profile-photo.jpeg" alt="Portrait of Suraj Kulal">
                 </div>
                 <div class="header-text">
                     <h1>Suraj Kulal</h1>
@@ -853,13 +988,13 @@
                         <rect x="2" y="4" width="20" height="16" rx="2"/>
                         <path d="M2 7l10 7 10-7"/>
                     </svg>
-                    suraj.rameshkulal@gmail.com
+                    <a href="mailto:suraj.rameshkulal@gmail.com">suraj.rameshkulal@gmail.com</a>
                 </span>
                 <span class="contact-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true">
                         <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
                     </svg>
-                    +91 8546897941
+                    <a href="tel:+918546897941">+91 8546897941</a>
                 </span>
                 <span class="contact-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true">
@@ -881,9 +1016,7 @@
                     Profile
                 </h2>
                 <p class="profile-text slide-item">
-                    A security-focused professional passionate about protecting systems, networks,
-                    and data. Skilled in threat detection, vulnerability assessment, incident response,
-                    and security automation across cloud and on-premise environments.
+                    To pursue a dynamic and challening career with an organization of repute, which give value addition to the organization as well as offers opportunity to enhance professional skills while getting a high level of satisfaction and recognition.
                 </p>
             </section>
 
@@ -904,7 +1037,7 @@
                     </div>
                     <div class="timeline-body">
                         <h3>Bachelor of Engineering – Computer Science</h3>
-                        <p class="meta">ABC University &nbsp;|&nbsp; 2020 – 2024</p>
+                        <p class="meta"><a href="https://mangaloreuniversity.ac.in/index">Mangalore University</a>  &nbsp;|&nbsp; 2019 – 2022</p>
                     </div>
                 </div>
 
@@ -916,8 +1049,8 @@
                         </svg>
                     </div>
                     <div class="timeline-body">
-                        <h3>Higher Secondary Education</h3>
-                        <p class="meta">XYZ College &nbsp;|&nbsp; 2018 – 2020</p>
+                        <h3>Pre University College – Commerce (Computer Science) </h3>
+                        <p class="meta"><a href="https://pue.karnataka.gov.in/en">KSEAB</a> &nbsp;|&nbsp; 2017 – 2019</p>
                     </div>
                 </div>
             </section>
@@ -938,12 +1071,21 @@
                         </svg>
                     </div>
                     <div class="timeline-body">
-                        <h3>Junior Security Analyst</h3>
-                        <p class="meta">ABC Technologies &nbsp;|&nbsp; 2024 – Present</p>
+                        <h3>IT Specialist</h3>
+                        <p class="meta"><a href="https://in.fourthfrontier.com/">Fourth Frontier Technologies Private Limited</a> &nbsp;|&nbsp; Feb 2026 – Present</p>
                         <ul>
-                            <li>Monitored SIEM alerts and investigated security incidents.</li>
-                            <li>Performed vulnerability scans and coordinated patch management.</li>
-                            <li>Assisted in firewall rule reviews and access control audits.</li>
+                            <li>Managed end-to-end company IT infrastructure including networks, servers, laptops, and internal business tools.</li>
+                            <li>Provisioned and managed user accounts in Microsoft Entra ID (Azure AD) for users joining the DRP program, ensuring secure and role-based access control.</li>
+                            <li>Configured and maintained VPNs, firewalls, and network security systems to protect organizational data and enforce secure access policies.</li>
+                            <li>Handled software licensing, IT asset management, and lifecycle tracking for company devices and applications.</li>
+                            <li>Ensured high availability and uptime of internal systems through continuous monitoring, troubleshooting, and proactive maintenance.</li>
+                            <li>Managed laptop provisioning, software installations, email setup, and user account administration for new and existing employees.</li>
+                            <li>Provided end-user IT support and resolved technical issues across hardware, software, and network environments.</li>
+                            <li>Designed and supported IT infrastructure architecture to enable scalability and future growth of the organization.</li>
+                            <li>Set up and maintained VPN infrastructure for secure remote access to internal systems.</li>
+                            <li>Managed CI/CD pipelines in Bitbucket, including build automation, deployment workflows, and repository maintenance.</li>
+                            <li>Maintained build servers and supported automation processes to improve development and deployment efficiency.</li>
+                            <li>Collaborated with development teams to ensure smooth code integration, version control, and release management.</li>
                         </ul>
                     </div>
                 </div>
@@ -956,12 +1098,20 @@
                         </svg>
                     </div>
                     <div class="timeline-body">
-                        <h3>Security Operations Intern</h3>
-                        <p class="meta">XYZ Solutions &nbsp;|&nbsp; 2023</p>
+                        <h3>IT Executive</h3>
+                        <p class="meta"><a href="https://tigc.in/pages/about-us?srsltid=AfmBOoojDpoNjRXIenQhSEEYjESCuhbD-ZPzyFlEtGsomUH5JFy8zjIu">Styleverse Lifestyle Pvt Ltd</a> (Aditya Birla Group) &nbsp;|&nbsp; Apr 2024 - Feb 2026</p>
                         <ul>
-                            <li>Analyzed network traffic using Wireshark and log monitoring tools.</li>
-                            <li>Supported penetration testing and vulnerability assessments.</li>
-                            <li>Documented security policies and incident response procedures.</li>
+                            <li>Providing technical support and troubleshooting for end-users.</li>
+                            <li>Ensuring data security and backup management.</li>
+                            <li>Firewall Maintenance. Access Point Configuration</li>
+                            <li> Managing IT infrastructure, including hardware software and network administration.</li>
+                            <li> Managed and maintained end-to-end network infrastructure across multiple client sites.</li>
+                            <li>Handled configuration, deployment, and monitoring of wireless Access Points (APs) including Aruba, Unifi, and other vendor devices.</li>
+                            <li>Performed VLAN design, configuration, and troubleshooting for secure and segmented network environments.</li>
+                            <li>Diagnosed and resolved network connectivity issues, bandwidth problems, and Wi-Fi performance degradation.</li>
+                            <li>Monitored network health, uptime, and performance using tools like controllers, dashboards, and monitoring systems.</li>
+                            <li>Conducted IP addressing, subnetting, routing, and switching configuration as part of daily operations.</li>
+                            <li>Coordinated with clients and IT teams for network upgrades, maintenance, and issue resolution.</li>
                         </ul>
                     </div>
                 </div>
@@ -986,6 +1136,16 @@
                     <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>Cloud Security</span>
                     <span class="skill-tag threat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>OWASP Top 10</span>
                     <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Docker</span>
+                    <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Docker</span>
+                    <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Windows Administration</span>
+                    <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 21v-2a4 4 0 00-8 0v2"/><circle cx="12" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>Microsoft Admin Panel</span>
+                    <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a4 4 0 01-4 4H7l-4 4V7a4 4 0 014-4h10a4 4 0 014 4z"/></svg>IT Technical Support</span>
+                    <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v7M12 15v7M2 12h7M15 12h7"/></svg>Networking</span>
+                    <span class="skill-tag threat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>Firewall Configuration</span>
+                    <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg>SQL</span>
+                    <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 010 20"/><path d="M12 2a15.3 15.3 0 000 20"/></svg>Web Administration</span>
+                    <span class="skill-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 20h10"/><path d="M8 8h8M8 12h5"/></svg>DHCP, DNS</span>
+                    <span class="skill-tag threat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/><path d="M12 15v2"/></svg>Fortigate, Sophos, Pfsense</span>
                 </div>
             </section>
 
@@ -1017,8 +1177,8 @@
                         </svg>
                     </div>
                     <div class="project-body">
-                        <h3>Web Application Security Scanner</h3>
-                        <p>Developed a tool to scan web apps for common OWASP vulnerabilities including XSS and SQL injection.</p>
+                        <h3><a href="https://github.com/surajrameshkulal-ship-it/assets_management_system">Assets Management System</a></h3>
+                        <p>Developed using tool Node.js 18+, Python 3.12+, MongoDB( local or Docker )</p>
                     </div>
                 </div>
 
@@ -1029,7 +1189,7 @@
                         </svg>
                     </div>
                     <div class="project-body">
-                        <h3>Single Page CV Website</h3>
+                        <h3><a href="https://github.com/surajrameshkulal-ship-it/single-page-cv">Single Page CV Website</a></h3>
                         <p>Designed a responsive cybersecurity-themed CV with animated graphics and sliding section transitions.</p>
                     </div>
                 </div>
@@ -1043,11 +1203,16 @@
                     Certifications
                 </h2>
                 <ul class="badge-list slide-item">
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>CompTIA Security+</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>CEH – Certified Ethical Hacker</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><button type="button" id="ccie-certificate-trigger">CCIE – Cisco Certified Internetwork Expert</button></li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><a href="https://www.mygreatlearning.com/certificate/XHPNCCTI">Introduction – DevOps</a></li>
                     <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Google Cybersecurity Certificate</li>
                 </ul>
             </section>
+
+            <div class="certificate-modal" id="ccie-certificate-modal" aria-hidden="true">
+                <button type="button" id="ccie-certificate-close" aria-label="Close certificate">&times;</button>
+                <img src="assets/ccie-certificate.jpeg" alt="CCIE certificate of completion">
+            </div>
 
             <section id="languages">
                 <h2 class="section-title slide-item">
@@ -1058,10 +1223,25 @@
                     Languages
                 </h2>
                 <ul class="lang-list slide-item">
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>English</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>Hindi</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>Kannada</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg><button type="button" class="language-proficiency-trigger" data-target="english-proficiency">English</button></li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg><button type="button" class="language-proficiency-trigger" data-target="hindi-proficiency">Hindi</button></li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg><button type="button" class="language-proficiency-trigger" data-target="kannada-proficiency">Kannada</button></li>
                 </ul>
+                <div class="language-proficiency slide-item" id="english-proficiency" aria-hidden="true">
+                    <h3>English Proficiency</h3>
+                    <p>Professional working proficiency</p>
+                    <div class="proficiency-meter" aria-hidden="true"><span></span></div>
+                </div>
+                <div class="language-proficiency slide-item" id="hindi-proficiency" aria-hidden="true">
+                    <h3>Hindi Proficiency</h3>
+                    <p>Professional working proficiency</p>
+                    <div class="proficiency-meter" aria-hidden="true"><span></span></div>
+                </div>
+                <div class="language-proficiency slide-item" id="kannada-proficiency" aria-hidden="true">
+                    <h3>Kannada Proficiency</h3>
+                    <p>Native or bilingual proficiency</p>
+                    <div class="proficiency-meter" aria-hidden="true"><span></span></div>
+                </div>
             </section>
 
         </div>
@@ -1070,56 +1250,12 @@
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true">
                 <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
             </svg>
-            // END OF FILE — References available upon request.
+            // END OF FILE — References available upon request. <a href="assets/suraj-cv.pdf" download>Download CV</a>
         </footer>
 
     </div>
 
     <script>
-        /* ── Matrix rain background ── */
-        (function initMatrix() {
-            const canvas = document.getElementById('matrix-canvas');
-            const ctx = canvas.getContext('2d');
-            const chars = 'ABCDEF0123456789@#$%&<>{}[]/\\|01SECURITY';
-            let columns, drops;
-
-            function resize() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                columns = Math.floor(canvas.width / 18);
-                drops = Array.from({ length: columns }, () => Math.random() * -100);
-            }
-
-            function draw() {
-                ctx.fillStyle = 'rgba(6, 11, 18, 0.08)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.font = '14px monospace';
-
-                for (let i = 0; i < columns; i++) {
-                    const char = chars[Math.floor(Math.random() * chars.length)];
-                    const x = i * 18;
-                    const y = drops[i] * 18;
-
-                    const brightness = Math.random();
-                    ctx.fillStyle = brightness > 0.95
-                        ? '#00ff88'
-                        : brightness > 0.8
-                            ? '#00d4ff'
-                            : 'rgba(0, 255, 136, 0.5)';
-                    ctx.fillText(char, x, y);
-
-                    if (y > canvas.height && Math.random() > 0.975) {
-                        drops[i] = 0;
-                    }
-                    drops[i]++;
-                }
-            }
-
-            resize();
-            window.addEventListener('resize', resize);
-            setInterval(draw, 50);
-        })();
-
         /* ── Floating particles inside page ── */
         (function initParticles() {
             const container = document.getElementById('particles');
@@ -1138,36 +1274,31 @@
         (function initTyping() {
             const subtitle = document.getElementById('typed-subtitle');
             const status = document.getElementById('status-text');
-            const role = 'IT Specialist';
-            const statusMsgs = [
-                'SYSTEM STATUS: SECURE  |  CLEARANCE: AUTHORIZED',
-                'FIREWALL: ACTIVE  |  INTRUSION DETECTION: RUNNING',
-                'ENCRYPTION: AES-256  |  THREAT LEVEL: LOW',
-                'ALL SYSTEMS OPERATIONAL  |  NO BREACHES DETECTED'
-            ];
-            let msgIndex = 0;
+            const cursor = document.querySelector('.typing-cursor');
 
-            function typeText(el, text, speed, cb) {
-                let i = 0;
-                el.textContent = '';
-                const timer = setInterval(() => {
-                    el.textContent += text[i];
-                    i++;
-                    if (i >= text.length) {
-                        clearInterval(timer);
-                        if (cb) setTimeout(cb, 1200);
+            function typeText(element, text, speed, callback) {
+                if (!element) return;
+                let index = 0;
+                element.textContent = '';
+
+                function typeNext() {
+                    element.textContent += text[index];
+                    index++;
+                    if (index < text.length) {
+                        setTimeout(typeNext, speed);
+                    } else if (callback) {
+                        setTimeout(callback, 300);
                     }
-                }, speed);
+                }
+
+                typeNext();
             }
 
-            typeText(subtitle, role, 70, () => {
-                function cycleStatus() {
-                    typeText(status, statusMsgs[msgIndex], 25, () => {
-                        msgIndex = (msgIndex + 1) % statusMsgs.length;
-                        cycleStatus();
-                    });
-                }
-                cycleStatus();
+            if (cursor) cursor.style.display = 'inline-block';
+            typeText(subtitle, 'IT Specialist', 70, () => {
+                typeText(status, 'SYSTEM STATUS: SECURE  |  CLEARANCE: AUTHORIZED', 24, () => {
+                    if (cursor) cursor.style.display = 'none';
+                });
             });
         })();
 
@@ -1248,6 +1379,60 @@
             banner.addEventListener('touchmove', onMove, {passive:true});
             banner.addEventListener('mouseleave', onLeave);
             banner.addEventListener('touchend', onLeave);
+        })();
+
+        (function initCertificateModal() {
+            const trigger = document.getElementById('ccie-certificate-trigger');
+            const modal = document.getElementById('ccie-certificate-modal');
+            const close = document.getElementById('ccie-certificate-close');
+            if (!trigger || !modal || !close) return;
+
+            function openModal() {
+                modal.classList.add('open');
+                modal.setAttribute('aria-hidden', 'false');
+                close.focus();
+            }
+
+            function closeModal() {
+                modal.classList.remove('open');
+                modal.setAttribute('aria-hidden', 'true');
+                trigger.focus();
+            }
+
+            trigger.addEventListener('click', openModal);
+            close.addEventListener('click', closeModal);
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) closeModal();
+            });
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && modal.classList.contains('open')) {
+                    closeModal();
+                }
+            });
+        })();
+
+        (function initLanguageProficiency() {
+            const triggers = document.querySelectorAll('.language-proficiency-trigger');
+            const panels = document.querySelectorAll('.language-proficiency');
+            if (!triggers.length || !panels.length) return;
+
+            triggers.forEach((trigger) => {
+                trigger.addEventListener('click', () => {
+                    const panel = document.getElementById(trigger.dataset.target);
+                    if (!panel) return;
+
+                    const shouldOpen = !panel.classList.contains('open');
+                    panels.forEach((item) => {
+                        item.classList.remove('open');
+                        item.setAttribute('aria-hidden', 'true');
+                    });
+
+                    if (shouldOpen) {
+                        panel.classList.add('open');
+                        panel.setAttribute('aria-hidden', 'false');
+                    }
+                });
+            });
         })();
 
     </script>
