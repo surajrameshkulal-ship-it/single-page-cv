@@ -1,0 +1,1 @@
+useEffect(() => { document.body.classList.toggle('dark', darkMode); }, [darkMode]);
