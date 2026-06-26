@@ -1,1 +1,1 @@
-useEffect(() => { document.body.classList.toggle('dark', darkMode); }, [darkMode]);
+<button onClick={toggleDarkMode}>Toggle Dark Mode</button>
