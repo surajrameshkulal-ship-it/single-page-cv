@@ -1,1 +1,3 @@
-<button onClick={toggleDarkMode}>Toggle Dark Mode</button>
+toggleDarkMode = () => {
+  document.body.classList.toggle('dark');
+};
