@@ -1,1 +1,4 @@
-/* Add dark mode styles here */
+/* Dark mode styles */
+body.dark {
+  @apply bg-gray-900 text-gray-200;
+}
